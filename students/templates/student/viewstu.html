@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% block body%}
+
+
+  <table class="table table-bordered">
+
+
+      <tr>
+          <th>Studets Name</th>
+          <td>{{student.stu_name}}</td>
+      </tr>
+      <tr>
+          <th>Father's Name</th>
+          <td>{{student.stu_father}}</td>
+      </tr>
+
+      <tr>
+          <th>Date Of Birth</th>
+          <td>{{student.dob}}</td>
+      </tr>
+
+      <tr>
+          <th>Phone</th>
+          <td>{{student.phone}}</td>
+      </tr>
+
+      <tr>
+          <th>Email</th>
+          <td>{{student.email}}</td>
+      </tr>
+
+      <tr>
+          <th>State</th>
+          <td>{{student.state}}</td>
+      </tr>
+
+      <tr>
+          <th>City</th>
+          <td>{{student.city}}</td>
+      </tr>
+
+      <tr>
+          <th>Pincode</th>
+          <td>{{student.pin}}</td>
+      </tr>
+
+      <tr>
+          <th>Marks</th>
+          <td>{{student.marks}}</td>
+      </tr>
+
+      <tr>
+          <th>Date</th>
+          <td>{{student.date| date:"M d, Y" }}</td>
+      </tr>
+  </table>
+{% endblock %}

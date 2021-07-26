@@ -1,0 +1,45 @@
+zip file name- Clavax
+create a project name  stu_enr
+
+create a app name students
+
+
+cd stu_enr
+python manage.py runserver
+
+
+python manage.py makemigrations
+#make migtations (schema in student/migtations/0001_initial.py)
+python manage.py migrate
+
+#admin pannel
+python manage.py createsuperuser
+usernmae:admin
+password:admin
+
+python manage.py runserver
+http://127.0.0.1:8000/
+CRUD Operations- add,edit,view
+
+database:mysql
+databse setting
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'students',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }}
+
+#make sure you have  install mysqlclient
+
+
+i have upload screen please check
+
+
+
+
+
+

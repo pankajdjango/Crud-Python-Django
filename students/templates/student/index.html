@@ -1,0 +1,128 @@
+{% extends 'base.html'%}
+
+
+{% block body%}
+
+
+
+<!-- The Modal -->
+
+<header>
+
+        Enrollment App
+
+</header>
+
+<div class="mt-4 bg-white">
+    <a type="button" class="btn btn-primary"  href="{% url 'add_stu'%}">
+    Add Student
+</a>
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Student</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="loadStudent">
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <table class="table table-hover">
+        <thead class="bg-dark text-white">
+        <tr>
+            <th>SNO</th>
+            <th>Student Name</th>
+
+            <th>Email</th>
+
+            <th>Phone</th>
+            <th>Class</th>
+            <th>Marks %</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if students%}
+        {% for stu in students%}
+        <tr>
+            <td >{{forloop.counter}} </td>
+            <td ><a href="#" onclick="viewStudents('{{stu.pk}}')">{{stu.stu_name}}</a> </td>
+
+
+            <td>{{stu.email}}</td>
+            <td>{{stu.phone}}</td>
+            <td>{{stu.class_opted}}</td>
+            <td>{{stu.marks}} %</td>
+            <td><a href="{% url 'edit_stu' stu.pk %}">Edit</a></td>
+
+        </tr>
+        {% endfor%}
+
+        {% else %}
+        <tr>
+
+            <td colspan="6">No Records found !</td>
+
+        </tr>
+        {% endif%}
+        {% if students.has_other_pages %}
+
+{% endif %}
+        </tbody>
+        <tr>
+            <td colspan="8" class="text-center">
+               <ul class="pagination">
+    {% if students.has_previous %}
+      <li><a href="?page={{ students.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in students.paginator.page_range %}
+      {% if students.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ students.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<script>
+    function viewStudents(sid){
+        $('#myModal').modal('show');
+
+        $.ajax({
+          url: "/viewstu/",
+          type:'get',
+          data: {'sid':sid},
+          success: function(data){
+            $("#loadStudent").html(data);
+            }
+        });
+
+    }
+</script>
+
+        {% endblock %}
